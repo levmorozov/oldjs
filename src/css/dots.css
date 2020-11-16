@@ -1,0 +1,51 @@
+
+.dots {
+    position: absolute;
+    z-index: 1039;
+    display: none;
+}
+
+.dots__menu {
+    user-select: none;
+    min-width: 160px;
+    max-width: 360px;
+    list-style: none;
+    background: white;
+    border: solid 1px #ddd;
+    border-radius: 2px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    overflow: visible;
+    padding: 0;
+    margin: 0;
+}
+
+.dots-open {
+    display: block;
+}
+
+.dots .dots__menu span {
+    cursor: pointer;
+    display: block;
+    color: inherit;
+    text-decoration: none;
+    line-height: 20px;
+    padding: 4px 15px;
+    margin: 0;
+    white-space: nowrap;
+}
+
+.dots .dots__menu span:hover {
+    background-color: #ffedd4;
+}
+
+
+.trigger {
+    width: 36px;
+    height: 36px;
+    -webkit-transition: opacity .1s ease-out;
+    transition: opacity .1s ease-out;
+    opacity: .4;
+    cursor: pointer;
+    background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2217%22%20height%3D%224%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M1.5%203.5a1.5%201.5%200%201%201%200-3%201.5%201.5%200%200%201%200%203zm7%200a1.5%201.5%200%201%201%200-3%201.5%201.5%200%200%201%200%203zm7%200a1.5%201.5%200%201%201%200-3%201.5%201.5%200%200%201%200%203z%22%20fill%3D%22%2302102f%22%20fill-rule%3D%22evenodd%22%2F%3E%3C%2Fsvg%3E") no-repeat 50%;
+    background-size: 17px 4px;
+}

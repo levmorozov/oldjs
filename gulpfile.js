@@ -2,11 +2,18 @@ const gulp = require('gulp');
 const terser = require("gulp-terser");
 const rename = require('gulp-rename');
 const include = require("gulp-include");
+const babel = require('gulp-babel');
+
 
 exports.default = function(done) {
     gulp.src('src/*.js')
         .pipe(include())
-        .pipe(gulp.dest('./dist/'))
+        .pipe(babel({
+            plugins: [
+                "@babel/plugin-transform-arrow-functions",
+                "@babel/plugin-transform-block-scoping",
+            ]
+        }))
         .pipe(terser({
             output: {
                 comments: true
@@ -20,5 +27,10 @@ exports.default = function(done) {
 
     gulp.src('src/css/*.css')
         .pipe(gulp.dest('./dist/'));
+
+    gulp.src('src/*.css')
+        .pipe(gulp.dest('./dist/'));
+
+
     done()
 };

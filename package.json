@@ -1,11 +1,16 @@
 {
   "name": "core.default",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "main": "index.js",
   "repository": "git@github.com:levmorozov/core.default.git",
   "author": "levmorozov <mail@levmorozov.ru>",
   "license": "MIT",
   "dependencies": {
+    "@babel/core": "^7.12.3",
+    "@babel/plugin-transform-arrow-functions": "^7.12.1",
+    "@babel/plugin-transform-block-scoping": "^7.12.1",
+    "@babel/preset-env": "^7.12.1",
+    "gulp-babel": "^8.0.0",
     "promise-polyfill": "^8.2.0",
     "unfetch": "^4.2.0"
   },

@@ -1,4 +1,4 @@
-(function (core, document, window) {
+(function (queue, document, window) {
     'use strict';
     //=include js/queue.js
 

@@ -1,5 +1,3 @@
-
-
 window.serializeArray = function (form) {
     let serialized = [];
     for (let i = 0; i < form.elements.length; i++) {

@@ -1,4 +1,3 @@
-
 let loaded = false,
     counter = 1000;
 
@@ -12,7 +11,7 @@ function onDomReady(e) {
 }
 
 if (document.readyState === 'loading')
-    document.addEventListener('DOMContentLoaded', onDomReady);
+    listen(document, 'DOMContentLoaded', onDomReady);
 else
     onDomReady();
 
@@ -36,4 +35,3 @@ function execute() {
         el.call(document);
     }
 }
-
