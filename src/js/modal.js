@@ -13,13 +13,13 @@ let FOCUSABLE_ELEMENTS = [
 window.Modal = function (sel, options) {
 
     let shown = false;
-    let opts = $.extend({}, {
+    let opts = core.extend({}, {
         onShow: noop,
         onHide: noop,
         click: true,
     }, options);
 
-    var modal = strToEl(sel);
+    let modal = strToEl(sel);
 
     function onKeydown(event) {
         if (event.keyCode === 27 && shown) hide(event);
@@ -27,14 +27,14 @@ window.Modal = function (sel, options) {
     }
 
     function maintainFocus(event) {
-        let focusableNodes = focusableNodes || $$(FOCUSABLE_ELEMENTS);
+        let focusableNodes = $$(FOCUSABLE_ELEMENTS, modal);
 
         if (!focusableNodes.length)
             return;
 
         // if focus currently not in the modal
         if (!event || !modal.contains(document.activeElement) && focusableNodes.length) {
-            let focused = $('[autofocus]') || focusableNodes[0];
+            let focused = $('[autofocus]', modal) || focusableNodes[0];
             if (focused)
                 focused.focus();
         } else {

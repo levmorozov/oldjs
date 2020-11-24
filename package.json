@@ -1,6 +1,6 @@
 {
   "name": "core.default",
-  "version": "0.0.2",
+  "version": "0.0.4",
   "main": "index.js",
   "repository": "git@github.com:levmorozov/core.default.git",
   "author": "levmorozov <mail@levmorozov.ru>",

@@ -91,8 +91,11 @@ window.setAttr = function (el, name, val) {
     return el.setAttribute(name, val);
 }
 
-
-core.extend = function () {
+/**
+ * Merge all objects passed to the functions
+ * @param {...[]} n
+ */
+core.extend = function (n) {
     let args = arguments;
     for (let i = 1; i < args.length; i++) {
         for (let key in args[i]) {
@@ -102,6 +105,9 @@ core.extend = function () {
     return args[0]
 }
 
+/**
+ * @param {boolean} on
+ */
 core.busy = function (on) {
     let cl = document.body.classList;
     let name = 'busy';
@@ -139,7 +145,7 @@ window.attr = attr;
 
 
 function ariaHidden(el, flag) {
-    setAttr(el, 'aria-hidden', el);
+    setAttr(el, 'aria-hidden', flag);
 }
 
 function data(el, name) {

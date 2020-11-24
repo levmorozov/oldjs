@@ -2,7 +2,7 @@ window.Dropdown = function (selector, options) {
 
     let shown = false;
 
-    let opts = $.extend({
+    let opts = core.extend({
         onShow: noop,
         onHide: noop,
         onClick: noop
