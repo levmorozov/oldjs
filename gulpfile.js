@@ -9,9 +9,8 @@ exports.default = function(done) {
     gulp.src('src/*.js')
         .pipe(include())
         .pipe(babel({
-            plugins: [
-                "@babel/plugin-transform-arrow-functions",
-                "@babel/plugin-transform-block-scoping",
+            presets: [
+                "@babel/preset-env"
             ]
         }))
         .pipe(terser({

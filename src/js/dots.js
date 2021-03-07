@@ -164,14 +164,14 @@
         dropdowns[dataDropdown].toggle(el, dataId, dataState);
     }
 
-    window.initDots = function (selector, options) {
+    window.initDots = (selector, options) => {
         $$(selector).forEach(triggerEl => {
-            triggerEl.onclick = function (e) {
+            triggerEl.onclick = e => {
 
                 e.preventDefault();
                 e.stopPropagation();
 
-                triggerFunc(this, options);
+                triggerFunc(e.target, options);
 
                 return false;
             };
@@ -183,7 +183,7 @@
      * @param {string} contextSelector
      * @param {string} triggerClass
      */
-    window.initDotsGlobal = function (contextSelector, triggerClass, options) {
+    window.initDotsGlobal = (contextSelector, triggerClass, options) => {
         $(contextSelector).addEventListener('click', e => {
             if(e.target.classList.contains(triggerClass)) {
                 e.preventDefault();

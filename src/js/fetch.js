@@ -24,9 +24,9 @@ window.serializeArray = function (form) {
 };
 
 function encodeUriParams(data) {
-    return Object.keys(data).map(function (key) {
+    return Object.keys(data).map(key => {
         if (Array.isArray(data[key]))
-            return data[key].map(function (value) {
+            return data[key].map(value => {
                 return encodeURIComponent(key) + '[]=' + encodeURIComponent(value);
             }).join('&');
         return encodeURIComponent(key) + '=' + encodeURIComponent(data[key]);
@@ -35,7 +35,7 @@ function encodeUriParams(data) {
 
 function parseUrl(url) {
     let vars = {};
-    url = url.replace(/[?&]+([^=&]+)=([^&]*)/gi, function (m, key, value) {
+    url = url.replace(/[?&]+([^=&]+)=([^&]*)/gi, (m, key, value) => {
         vars[key] = decodeURIComponent(value);
         return '';
     });
@@ -86,12 +86,12 @@ core.fetchQuery = function (method, url, data) {
         method: method,
         headers: headers,
         body: data
-    }).then(function (response) {
+    }).then(response => {
         let contentType = response.headers.get('content-type');
 
         // if json
         if (!contentType || contentType.indexOf('json') !== -1) {
-            return response.json().then(function (json) {
+            return response.json().then(json => {
                 if (response.ok)
                     return json;
                 return Promise.reject(core.extend({}, json, {
@@ -100,7 +100,7 @@ core.fetchQuery = function (method, url, data) {
                 }));
             })
         } else {
-            return response.text().then(function (text) {
+            return response.text().then(text => {
                 if (response.ok)
                     return text;
                 return Promise.reject({

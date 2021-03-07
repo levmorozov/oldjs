@@ -1,24 +1,35 @@
 {
   "name": "core.default",
-  "version": "0.0.9",
-  "main": "index.js",
+  "version": "0.0.14",
   "repository": "git@github.com:levmorozov/core.default.git",
   "author": "levmorozov <mail@levmorozov.ru>",
   "license": "MIT",
+  "bin": {
+    "mii-assets": "bin/assets.js"
+  },
   "dependencies": {
     "@babel/core": "^7.12.3",
-    "@babel/plugin-transform-arrow-functions": "^7.12.1",
-    "@babel/plugin-transform-block-scoping": "^7.12.1",
     "@babel/preset-env": "^7.12.1",
-    "gulp-babel": "^8.0.0",
-    "promise-polyfill": "^8.2.0",
-    "unfetch": "^4.2.0"
+    "autoprefixer": "^10.2.5",
+    "minimist": "^1.2.5",
+    "node-zopfli": "^2.1.4",
+    "postcss": "^8.2.7",
+    "postcss-csso": "^5.0.0",
+    "terser": "^5.6.0"
   },
   "devDependencies": {
     "gulp": "^4.0.2",
+    "gulp-babel": "^8.0.0",
     "gulp-cli": "^2.3.0",
     "gulp-include": "^2.4.1",
     "gulp-rename": "^2.0.0",
-    "gulp-terser": "^1.4.1"
-  }
+    "gulp-terser": "^2.0.1",
+    "promise-polyfill": "^8.2.0",
+    "unfetch": "^4.2.0"
+  },
+  "files": [
+    "bin/",
+    "dist/"
+  ],
+  "browserslist": "last 2 version, > 1%, not ie 11, not dead"
 }

@@ -11,7 +11,7 @@ window.Dropdown = function (selector, options) {
     let trigger = strToEl(selector);
     let target = $(data(trigger, 'dropdown'));
 
-    listen(trigger, 'click', function (event) {
+    listen(trigger, 'click', event => {
         event.preventDefault();
         event.stopPropagation();
 
@@ -25,7 +25,7 @@ window.Dropdown = function (selector, options) {
         if (!opts.onClick.call(target, e) || !target.contains(e.target) || e.target.tagName === 'A') hide();
     }
 
-    this.onKeydown = function (event) {
+    this.onKeydown = event => {
         if (event.keyCode === 27 && shown) hide(event);
     };
 
