@@ -82,10 +82,10 @@ window.Dropdown = function (selector, options) {
             let rect = trigger.getBoundingClientRect();
 
             target.style.left = anchorRightMode
-                ? (trigger.offsetLeft - (target.offsetWidth - trigger.offsetWidth) + hOffset) + 'px'
-                : (trigger.offsetLeft + hOffset) + "px";
+                ? (rect.left - (target.offsetWidth - trigger.offsetWidth) + hOffset) + 'px'
+                : (rect.left + hOffset) + "px";
 
-            target.style.top = (rect.top + document.body.scrollTop + trigger.offsetHeight + vOffset) + 'px';
+            target.style.top = (rect.top + window.pageYOffset + trigger.offsetHeight + vOffset) + 'px';
         }
     }
 

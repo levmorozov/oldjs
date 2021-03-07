@@ -17,6 +17,9 @@ exports.default = function(done) {
         .pipe(terser({
             output: {
                 comments: true
+            },
+            mangle: {
+                keep_fnames: true
             }
         }))
         .pipe(rename(function (path) {

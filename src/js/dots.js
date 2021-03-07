@@ -1,4 +1,4 @@
-(function (document) {
+(function (document, window) {
     'use strict';
     /*
     example:
@@ -15,12 +15,16 @@
      */
 
 
-    window.Dots = function (targetSel) {
+    window.Dots = function (targetSel, options) {
 
         let shown = false;
         let target = $(targetSel);
         let trigger;
         let curId;
+
+        let opts = core.extend({}, {
+            onShow: noop,
+        }, options);
 
         function onClick(e) {
 
@@ -35,7 +39,7 @@
 
                 let id = clickTarget.id,
                     dataLink = data(clickTarget, 'link'),
-                  //  dataId = data(clickTarget, 'id'),
+                    //  dataId = data(clickTarget, 'id'),
                     dataConfirm = data(clickTarget, 'confirm');
 
                 if (dataConfirm) {
@@ -52,7 +56,7 @@
         function process(id, dataLink, dataId) {
             if (dataLink) {
                 core.busy(true);
-                core.post(dataLink + dataId)
+                core.post(dataLink, {'id': dataId})
                     .then(data => {
                         core.emit(id, [dataId, data])
                     })
@@ -68,7 +72,7 @@
         }
 
         this.onKeydown = function (event) {
-            if (event.keyCode === 27 && shown) hide();
+            if (event.code === 'Escape' && shown) hide();
         };
 
         function toggle(trigger, dataId, dataState) {
@@ -97,21 +101,33 @@
 
             curId = dataId;
 
+            if(dataState) {
+                $$('span', target).forEach(item => {
+                    // If one of the links have state then compare it with global (trigger) state
+                    // and show/hide link. Used for links like "publish/unpublish"
+                    // as alternative - property "not-state" for inverse logic
+                    let itemState = data(item, 'state');
 
-            $$('span', target).forEach(item => {
-                // If one of the links have state then compare it with global (trigger) state
-                // and show/hide link. Used for links like "publish/unpublish"
-                let itemState = data(item, 'state');
-                if (itemState) {
-                    if (itemState === dataState)
-                        window.show(item);
-                    else
-                        window.hide(item);
-                }
-                // Trigger's id we always just sets to all links
-                //item.setAttribute('data-id', dataId);
+                    if (itemState) {
+                        if (itemState === dataState)
+                            window.show(item);
+                        else
+                            window.hide(item);
+                    } else {
+                        let itemNotState = data(item, 'not-state');
+                        if(itemNotState) {
+                            if (itemNotState === dataState)
+                                window.hide(item);
+                            else
+                                window.show(item);
+                        }
+                    }
+                    // Trigger's id we always just sets to all links
+                    //item.setAttribute('data-id', dataId);
+                });
+            }
 
-            });
+            opts.onShow.call(this, target, currentTrigger);
         }
 
         function hide() {
@@ -124,8 +140,8 @@
         function position() {
             let rect = trigger.getBoundingClientRect();
 
-            target.style.left = (trigger.offsetLeft - (target.offsetWidth - trigger.offsetWidth)) + 'px';
-            target.style.top = (rect.top + document.body.scrollTop + trigger.offsetHeight) + 'px';
+            target.style.left = (rect.left - (target.offsetWidth - trigger.offsetWidth)) + 'px';
+            target.style.top = (rect.top + window.pageYOffset + trigger.offsetHeight) + 'px';
         }
 
         return {
@@ -135,29 +151,46 @@
 
     let dropdowns = {};
 
-    window.initDots = function (selector) {
-        $$(selector).forEach(triggerEl => {
+    function triggerFunc(el, options) {
+        let dataId = data(el, 'id');
+        let dataState = data(el, 'state');
+        let dataDropdown = data(el, 'dropdown');
 
+
+        if (dropdowns[dataDropdown] === undefined) {
+            dropdowns[dataDropdown] = new Dots(dataDropdown, options);
+        }
+
+        dropdowns[dataDropdown].toggle(el, dataId, dataState);
+    }
+
+    window.initDots = function (selector, options) {
+        $$(selector).forEach(triggerEl => {
             triggerEl.onclick = function (e) {
 
                 e.preventDefault();
                 e.stopPropagation();
 
-                let dataId = data(this, 'id');
-                let dataState = data(this, 'state');
-                let dataDropdown = data(this, 'dropdown');
-
-
-                if (dropdowns[dataDropdown] === undefined) {
-                    dropdowns[dataDropdown] = new Dots(dataDropdown);
-                }
-
-                dropdowns[dataDropdown].toggle(this, dataId, dataState);
+                triggerFunc(this, options);
 
                 return false;
             };
-
         });
     }
 
-})(document);
+    /**
+     *
+     * @param {string} contextSelector
+     * @param {string} triggerClass
+     */
+    window.initDotsGlobal = function (contextSelector, triggerClass, options) {
+        $(contextSelector).addEventListener('click', e => {
+            if(e.target.classList.contains(triggerClass)) {
+                e.preventDefault();
+                e.stopPropagation();
+                triggerFunc(e.target, options);
+            }
+        });
+    }
+
+})(document, window);
