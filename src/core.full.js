@@ -13,6 +13,9 @@
     //=include js/dropdown.js
     //=include js/dots.js
 
-}(window.core = window.core || {},
+    // Temporary fix for backwards compatibility
+    window.core = core;
+
+}(window._core = window._core || {},
     window._queue = window._queue || [],
     document, window));
