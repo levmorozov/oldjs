@@ -13,7 +13,7 @@ let FOCUSABLE_ELEMENTS = [
 window.Modal = function (sel, options) {
 
     let shown = false;
-    let opts = core.extend({}, {
+    let opts = extend({}, {
         onShow: noop,
         onHide: noop,
         click: true,

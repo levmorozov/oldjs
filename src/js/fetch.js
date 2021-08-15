@@ -94,7 +94,7 @@ core.fetchQuery = function (method, url, data) {
             return response.json().then(json => {
                 if (response.ok)
                     return json;
-                return Promise.reject(core.extend({}, json, {
+                return Promise.reject(extend({}, json, {
                     status: response.status,
                     statusText: response.text
                 }));
@@ -142,7 +142,7 @@ core.post = function (url, data) {
 core.get = function (url, data) {
     if (data) {
         let parsedUrl = parseUrl(url);
-        let params = core.extend({}, parsedUrl[1], data);
+        let params = extend({}, parsedUrl[1], data);
         url = parsedUrl[0] + '?' + encodeUriParams(params);
     }
     return core.fetchQuery('get', url);

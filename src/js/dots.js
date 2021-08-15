@@ -22,7 +22,7 @@
         let trigger;
         let curId;
 
-        let opts = core.extend({}, {
+        let opts = extend({}, {
             onShow: noop,
         }, options);
 

@@ -1,11 +1,9 @@
-(function (document) {
+(function (document, window) {
     'use strict';
 
     function noop() { return true }
-    function ariaHidden(el, flag) {
-        setAttr(el, 'aria-hidden', el);
-    }
 
+    //=include js/helpers.js
     //=include js/modal.js
 
-}(document));
+}(document, window));

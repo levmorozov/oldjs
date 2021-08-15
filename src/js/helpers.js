@@ -95,7 +95,7 @@ window.setAttr = function (el, name, val) {
  * Merge all objects passed to the functions
  * @param {...[]} n
  */
-core.extend = function (n) {
+function extend(n) {
     let args = arguments;
     for (let i = 1; i < args.length; i++) {
         for (let key in args[i]) {
@@ -104,45 +104,6 @@ core.extend = function (n) {
     }
     return args[0]
 }
-
-/**
- * @param {boolean} on
- */
-core.busy = function (on) {
-    let cl = document.body.classList;
-    let name = 'busy';
-    if (on) cl.add('busy'); else cl.remove(name);
-}
-
-let events = {};
-
-/**
- * @param {string} event
- * @param {Function} callback
- */
-core.on = function(event, callback) {
-    if(events[event] === undefined)
-        events[event] = [];
-    events[event].push(callback);
-};
-
-/**
- * @param {string} event
- * @param {[]} args
- */
-core.emit = function(event, args) {
-    if(events[event] === undefined)
-        return;
-
-    events[event].forEach( callback => {
-        callback.apply(null, args);
-    });
-};
-
-core.strToEl = strToEl;
-
-window.attr = attr;
-
 
 function ariaHidden(el, flag) {
     setAttr(el, 'aria-hidden', flag);
