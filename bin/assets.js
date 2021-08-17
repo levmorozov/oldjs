@@ -20,7 +20,8 @@ const minimist = require('minimist'),
 let postcss = require('postcss');
 
 const terserParams = {
-    warnings: true
+    warnings: true,
+    comments: false
 };
 
 const argv = minimist(process.argv.slice(2), {
