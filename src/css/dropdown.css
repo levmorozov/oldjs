@@ -20,6 +20,8 @@
 
 .dropdown-open {
     display: block;
+    left: 0;
+    top: 0;
 }
 
 .dropdown .dropdown__menu li > a,

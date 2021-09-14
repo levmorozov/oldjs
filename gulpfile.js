@@ -10,8 +10,12 @@ exports.default = function(done) {
         .pipe(include())
         .pipe(babel({
             presets: [
-                "@babel/preset-env"
-            ]
+                ["@babel/preset-env",
+                {
+                    "exclude": ["@babel/plugin-transform-typeof-symbol"]
+                }]
+            ],
+
         }))
         .pipe(terser({
             output: {

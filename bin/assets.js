@@ -21,7 +21,9 @@ let postcss = require('postcss');
 
 const terserParams = {
     warnings: true,
-    comments: false
+    format: {
+        comments: false
+    }
 };
 
 const argv = minimist(process.argv.slice(2), {

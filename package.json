@@ -1,6 +1,6 @@
 {
   "name": "core.default",
-  "version": "0.0.16",
+  "version": "0.0.20",
   "repository": "git@github.com:levmorozov/core.default.git",
   "author": "levmorozov <mail@levmorozov.ru>",
   "license": "MIT",
@@ -8,14 +8,14 @@
     "mii-assets": "bin/assets.js"
   },
   "dependencies": {
-    "@babel/core": "^7.12.3",
-    "@babel/preset-env": "^7.12.1",
-    "autoprefixer": "^10.2.5",
+    "@babel/core": "^7.15.0",
+    "@babel/preset-env": "^7.15.0",
+    "autoprefixer": "^10.3.1",
     "minimist": "^1.2.5",
     "node-zopfli": "^2.1.4",
-    "postcss": "^8.2.7",
-    "postcss-csso": "^5.0.0",
-    "terser": "^5.6.0"
+    "postcss": "^8.3.6",
+    "postcss-csso": "^5.0.1",
+    "terser": "^5.8.0"
   },
   "devDependencies": {
     "gulp": "^4.0.2",
@@ -31,5 +31,5 @@
     "bin/",
     "dist/"
   ],
-  "browserslist": "last 2 version, > 1%, not ie 11, not dead"
+  "browserslist": "> 0.5%, last 2 versions, Firefox ESR, not dead"
 }

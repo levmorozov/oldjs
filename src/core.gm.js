@@ -7,6 +7,7 @@
     //=include js/helpers_ex.js
     //=include js/fetch.js
     //=include js/queue.js
+    //=include js/router.js
 
     function noop() { return true }
 
