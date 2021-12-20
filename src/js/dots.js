@@ -182,6 +182,7 @@
      *
      * @param {string} contextSelector
      * @param {string} triggerClass
+     * @param {[]} options
      */
     window.initDotsGlobal = (contextSelector, triggerClass, options) => {
         $(contextSelector).addEventListener('click', e => {

@@ -8,7 +8,7 @@ window.$ = function (selector, context) {
 
 
 /**
- * @param {string} selector
+ * @param {string|string[]} selector
  * @param {HTMLElement} [context]
  */
 window.$$ = function (selector, context) {
@@ -85,6 +85,7 @@ function attr(el, name) {
 /**
  * @param {HTMLElement|string} el
  * @param {string} name
+ * @param val
  */
 window.setAttr = function (el, name, val) {
     el = strToEl(el);
@@ -93,7 +94,7 @@ window.setAttr = function (el, name, val) {
 
 /**
  * Merge all objects passed to the functions
- * @param {...[]} n
+ * @param {...{}} n
  */
 function extend(n) {
     let args = arguments;

@@ -1,0 +1,16 @@
+#dropzone {
+    padding: 30px;
+    border: 2px dashed #aaa;
+    background-color: #fff;
+    color: #444;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#dropzone input {
+    visibility: hidden;
+}
+
+.dropzone-hover {
+    border-color: orange !important;
+}
