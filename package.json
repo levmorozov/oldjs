@@ -1,35 +1,42 @@
 {
   "name": "core.default",
-  "version": "0.0.23",
-  "repository": "git@github.com:levmorozov/core.default.git",
+  "version": "0.1.5",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/levmorozov/core.default.git"
+  },
   "author": "levmorozov <mail@levmorozov.ru>",
   "license": "MIT",
   "bin": {
-    "mii-assets": "bin/assets.js"
-  },
-  "dependencies": {
-    "@babel/core": "^7.16.0",
-    "@babel/preset-env": "^7.16.4",
-    "autoprefixer": "^10.4.0",
-    "minimist": "^1.2.5",
-    "node-zopfli": "^2.1.4",
-    "postcss": "^8.4.5",
-    "postcss-csso": "^5.0.1",
-    "terser": "^5.10.0"
+    "mii-blocks": "bin/blocks.js"
   },
   "devDependencies": {
+    "@swc/cli": "^0.1.57",
+    "@swc/core": "^1.3.11",
+    "autoprefixer": "^10.4.13",
     "gulp": "^4.0.2",
-    "gulp-babel": "^8.0.0",
     "gulp-cli": "^2.3.0",
     "gulp-include": "^2.4.1",
     "gulp-rename": "^2.0.0",
-    "gulp-terser": "^2.1.0",
-    "promise-polyfill": "^8.2.1",
+    "gulp-swc": "^1.2.3",
+    "minimist": "^1.2.7",
+    "postcss": "^8.4.18",
+    "postcss-csso": "^6.0.1",
+    "promise-polyfill": "^8.2.3",
     "unfetch": "^4.2.0"
+  },
+  "scripts": {
+    "build": "npx gulp"
   },
   "files": [
     "bin/",
     "dist/"
   ],
-  "browserslist": "> 1%, not dead"
+  "browserslist": "> 1%, not dead, ie 11",
+  "description": "Some legacy js helpers and base css's.",
+  "bugs": {
+    "url": "https://github.com/levmorozov/core.default/issues"
+  },
+  "homepage": "https://github.com/levmorozov/core.default#readme",
+  "main": "gulpfile.js"
 }

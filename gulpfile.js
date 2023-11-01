@@ -1,28 +1,30 @@
 const gulp = require('gulp');
-const terser = require("gulp-terser");
+const swc = require("gulp-swc");
 const rename = require('gulp-rename');
 const include = require("gulp-include");
-const babel = require('gulp-babel');
 
 
 exports.default = function(done) {
     gulp.src('src/*.js')
         .pipe(include())
-        .pipe(babel({
-            presets: [
-                ["@babel/preset-env",
-                {
-                    "exclude": ["@babel/plugin-transform-typeof-symbol"]
-                }]
-            ],
-
-        }))
-        .pipe(terser({
-            output: {
-                comments: true
+        .pipe(gulp.dest('./dist/'))
+        .pipe(swc({
+            minify: true,
+            "env": {
+                "targets": "> 0.25%, not dead, ie 11",
             },
-            mangle: {
-                keep_fnames: true
+            jsc: {
+                target: "es5",
+                loose: true,
+                parser: {
+                    syntax: "ecmascript",
+                    comments: false,
+                    script: true,
+                },
+                minify: {
+                    "compress": true,
+                    "mangle": true
+                }
             }
         }))
         .pipe(rename(function (path) {

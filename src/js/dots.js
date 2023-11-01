@@ -185,7 +185,8 @@
      * @param {[]} options
      */
     window.initDotsGlobal = (contextSelector, triggerClass, options) => {
-        $(contextSelector).addEventListener('click', e => {
+        let el = $(contextSelector);
+        el && el.addEventListener('click', e => {
             if(e.target.classList.contains(triggerClass)) {
                 e.preventDefault();
                 e.stopPropagation();
